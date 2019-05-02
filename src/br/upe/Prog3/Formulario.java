@@ -13,23 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 public class Formulario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Formulario() {
-		super();
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) {
+		String tituloArtigo = req.getParameter("nomeArtigo");
+		String autor = req.getParameter("nomeAutor");
+		String eventoJournal = req.getParameter("evento");
+		String ano = req.getParameter("ano");
+		String paginas = req.getParameter("paginas");
+		String doi = req.getParameter("doi");
+		String issn = req.getParameter("issn"); 
 
-	}
+		Artigo artigo = new Artigo(tituloArtigo, autor, eventoJournal, ano, paginas, doi, issn);
+		adicionarArquivo a = new adicionarArquivo();
+		a.gravar(artigo); 
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.print("<html>");
-		out.print("<head>");
-		out.print("<title>Formulário</title>");
-		out.print("</head>");
-		out.print("<body>");
-		out.print("<h1>Formulário de Cadastro</h1>");
-		String nome = (String) request.getParameter("nome");
-		String sobrenome = (String) request.getParameter("sobrenome");
 
 	}
 
